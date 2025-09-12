@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +19,8 @@ public class InputManager : MonoBehaviour
     public float moveSpeed = 5f;
 
     private bool isPaused = false;
+
+    public bool isMoving = false;
 
 
     private void Awake()
@@ -45,18 +46,20 @@ public class InputManager : MonoBehaviour
         pauseAction = playerMap.FindAction("Pause");
     }
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
+
+        //  If player is moving enable flag
+        if (moveInput != new Vector2(0, 0))
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving= false;
+        }
     }
 
     private void FixedUpdate()
