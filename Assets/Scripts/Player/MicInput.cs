@@ -28,8 +28,8 @@ public class MicInput : MonoBehaviour
         {
             Debug.LogError("No microphones found (or permission denied).");
         }
-
-        ChooseDevice("RØDE");
+        // Temporary device selection(testing only) replace with user selected device
+        ChooseDevice("RÃ˜DE");
         GetSampleRate(_device);
 
         _source = GetComponent<AudioSource>();
