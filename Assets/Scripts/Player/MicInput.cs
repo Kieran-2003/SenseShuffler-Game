@@ -4,6 +4,8 @@ using System.Collections;
 
 public class MicInput : MonoBehaviour
 {
+    public static MicInput instance;
+
     public bool logDevices = false;
 
     private string _device;
@@ -14,22 +16,12 @@ public class MicInput : MonoBehaviour
 
     private void Start()
     {
-        //  Logs all connected devices to the console
-        if(logDevices)
-        {
-            foreach(var d in Microphone.devices)
-            {
-                Debug.Log($"Mic device: {d}");
-            }
-        }
-        
-        //  Checks if any devices are connected
-        if(Microphone.devices == null || Microphone.devices.Length == 0)
-        {
-            Debug.LogError("No microphones found (or permission denied).");
-        }
 
-        ChooseDevice("RØDE");
+    }
+
+    public void MicChange(string micOption)
+    {
+        ChooseDevice(micOption);
         GetSampleRate(_device);
 
         _source = GetComponent<AudioSource>();
@@ -41,7 +33,7 @@ public class MicInput : MonoBehaviour
 
         _clip = Microphone.Start(_device, true, _clipLengthSec, _sampleRate);
 
-        if(_clip == null)
+        if (_clip == null)
         {
             Debug.LogError("Microphone.Start returned a null (PERMISSION/DEVICE ISSUE).");
             return;

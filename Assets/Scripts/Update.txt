@@ -1,0 +1,18 @@
+Attempted to add a drop down menu to select mic option.
+
+ERRORS:
+	1 NullReferenceException
+	3 SerializedObjectNotCreatableException
+
+Suspected issue:
+	-Trying to set the audiosource for the MicManager GameObject in Void Start(); the mic isn't selected yet and no option is available
+
+Fix:
+	-Set mic to default at game start, or keep GameObject disabled until required, or utilise different scenes for Main Menu/Mic Select + Test/Game
+
+	-Create a micChanging method in MicManager.cs. Ensure it stops recording the current mic and then switches to the new mic and starts recording the new mic.
+
+Other Todo:
+	-Update the UIManager script to be more readable
+	-Update the UIManager script + DropDown GameObject, so that the index of the option is returned when the SetMicOption() method is called, ensuring the correct string is called into
+		the MicInput.instance.MicChange(string) method.
