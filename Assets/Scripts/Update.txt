@@ -16,3 +16,5 @@ Other Todo:
 	-Update the UIManager script to be more readable
 	-Update the UIManager script + DropDown GameObject, so that the index of the option is returned when the SetMicOption() method is called, ensuring the correct string is called into
 		the MicInput.instance.MicChange(string) method.
+	-All methods in MicInput.cs require updating to ensure they seect a defaut device on Start().
+

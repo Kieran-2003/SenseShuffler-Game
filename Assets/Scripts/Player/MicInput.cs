@@ -16,7 +16,7 @@ public class MicInput : MonoBehaviour
 
     private void Start()
     {
-
+        MicChange(null);
     }
 
     public void MicChange(string micOption)
